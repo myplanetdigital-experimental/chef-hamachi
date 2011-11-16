@@ -18,62 +18,35 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-case node[:logmein][:install_method]
-when "binaries"
+node.default[:logmein][:hamachi][:version] = "2.1.0.17"
+installer_filename = "logmein-hamachi_#{node[:logmein][:hamachi][:version]}-"
 
-  default[:logmein][:hamachi][:version] = "2.0.1.13"
-  installer_filename = "logmein-hamachi-#{node[:logmein][:hamachi][:version]}-"
-  
-  case node[:kernel][:machine]
-  # 32-bit architecture
-  when "i386", "i486"
-    case node[:platform]
-    when "debian", "ubuntu"
-      installer_filename << "1_i386.deb"
-    when "centos", "redhat", "fedora", "suse"
-      installer_filename << "1.i486.rpm"
-    end
-  # 64-bit architecture
-  when "x86_64", "amd64"
-    case node[:platform]
-    when "debian", "ubuntu"
-      installer_filename << "1_amd64.deb"
-    when "centos", "redhat", "fedora", "suse"
-      installer_filename << "1.x86_64.rpm"
-    end
+case node[:kernel][:machine]
+# 32-bit architecture
+when "i386", "i486"
+  case node[:platform]
+  when "debian", "ubuntu"
+    installer_filename << "1_i386.deb"
+  when "centos", "redhat", "fedora", "suse"
+    installer_filename << "1.i486.rpm"
   end
-  
-  remote_file "#{Chef::Config[:file_cache_path]}/#{installer_filename}" do
-    source "https://secure.logmein.com/labs/#{installer_filename}"
-    action :create_if_missing
+# 64-bit architecture
+when "x86_64", "amd64"
+  case node[:platform]
+  when "debian", "ubuntu"
+    installer_filename << "1_amd64.deb"
+  when "centos", "redhat", "fedora", "suse"
+    installer_filename << "1.x86_64.rpm"
   end
-  
-  package "logmein-hamachi" do
-    source "#{Chef::Config[:file_cache_path]}/#{installer_filename}"
-  end
+end
 
-when "source"
-  require_recipe "build-essentials"
-  case node[:kernal][:machine]
-  when "i386", "i486"
-    installer_filename = "logmein-hamachi-2.0.1.13-x86.tgz"
-  when "x86_64", "amd64"
-    installer_filename = "logmein-hamachi-2.0.1.13-x64.tgz"
-  end
+remote_file "#{Chef::Config[:file_cache_path]}/#{installer_filename}" do
+  source "https://secure.logmein.com/labs/#{installer_filename}"
+  action :create_if_missing
+end
 
-  remote_file "#{Chef::Config[:file_cache_path]}/#{installer_filename}" do
-    source "https://secure.logmein.com/labs/#{installer_filename}"
-    mode "0644"
-    action :create_if_missing
-  end
+package "lsb-core"
 
-  bash "build logmein hamachi" do
-    cwd Chef::Config[:file_cache_path]
-    code <<-EOH
-    tar -xvf #{installer_filename}
-    (cd #{installer_filename.split(".")[-string.split(".").length..-2].join(".")}\
-      && make\
-      && make install)
-    EOH
-  end
+dpkg_package "logmein-hamachi" do
+  source "#{Chef::Config[:file_cache_path]}/#{installer_filename}"
 end
