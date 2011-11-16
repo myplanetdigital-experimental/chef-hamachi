@@ -50,3 +50,9 @@ package "lsb-core"
 dpkg_package "logmein-hamachi" do
   source "#{Chef::Config[:file_cache_path]}/#{installer_filename}"
 end
+
+service "logmein-hamachi" do
+  reload_command "/etc/init.d/logmein-hamachi force-reload"
+  supports [ :restart, :reload ]
+  action [ :enable, :start ]
+end
