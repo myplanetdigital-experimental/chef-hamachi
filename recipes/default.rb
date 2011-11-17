@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: logmein-hamachi
+# Cookbook Name:: hamachi
 # Recipe:: default
 #
 # Copyright 2011, Myplanet Digital
@@ -51,7 +51,8 @@ dpkg_package "logmein-hamachi" do
   source "#{Chef::Config[:file_cache_path]}/#{installer_filename}"
 end
 
-service "logmein-hamachi" do
+service "hamachi" do
+  service_name "logmein-hamachi"
   reload_command "/etc/init.d/logmein-hamachi force-reload"
   supports [ :restart, :reload ]
   action [ :enable, :start ]
