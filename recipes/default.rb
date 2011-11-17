@@ -18,8 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-node.default[:logmein][:hamachi][:version] = "2.1.0.17"
-installer_filename = "logmein-hamachi_#{node[:logmein][:hamachi][:version]}-"
+installer_filename = "logmein-hamachi_#{node[:hamachi][:version]}-"
 
 case node[:kernel][:machine]
 # 32-bit architecture
@@ -47,7 +46,7 @@ end
 
 package "lsb-core"
 
-dpkg_package "logmein-hamachi" do
+dpkg_package "hamachi" do
   source "#{Chef::Config[:file_cache_path]}/#{installer_filename}"
 end
 
