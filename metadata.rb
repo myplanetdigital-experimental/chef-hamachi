@@ -1,4 +1,4 @@
-maintainer       "Myplanet Digital"
+maintainer       "Patrick Connolly, Myplanet Digital"
 maintainer_email "patrick@myplanetdigital.com"
 license          "GNU Public License 3.0"
 description      "Installs/Configures LogMeIn Hamachi2"

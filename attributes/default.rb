@@ -18,6 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-default['hamachi']['version'] = "2.1.0.17"
-default['hamachi']['nickname'] = node['hostname']
-default['hamachi']['networks'] = nil
+default['hamachi']['version']         = "2.1.0.17"
+default['hamachi']['nickname']        = node['hostname']
+default['hamachi']['logmein_account'] = "account.email@example.com"
+default['hamachi']['networks']        = { "my-network-id" => "password" }
