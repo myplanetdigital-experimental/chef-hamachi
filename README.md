@@ -27,6 +27,10 @@ Hash containing network names and associated passwords. If required, client
 attachmment request must be approved through web UI before networks may be
 connected.
 
+`hamachi['ipaddress_ham0']`
+The clients internal ip on the network. This is set in the recipe, and
+not tunable.
+
 Usage
 =====
 
