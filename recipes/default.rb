@@ -56,10 +56,3 @@ service "hamachi" do
   supports [ :restart, :reload ]
   action [ :enable, :start ]
 end
-
-hamachi_iface = "ham0"
-if node.network.interfaces.attribute?(hamachi_iface)
-  node[:network][:interfaces][hamachi_iface][:addresses].each do |address, data|
-    node.default['hamachi']["ipaddress_#{hamachi_iface}"] = address if data['family'] == 'inet'
-  end
-end

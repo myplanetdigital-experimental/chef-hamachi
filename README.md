@@ -8,6 +8,9 @@ Currently tested only on Ubuntu 8.04.2 (Hardy).
 Requirements
 ============
 
+While not required, the [network_addr](https://gist.github.com/1040543) Ohai plugin is highly recommended
+to help retrieve the ip address of the hamachi interface
+
 Attributes
 ==========
 `hamachi['version']`
@@ -26,10 +29,6 @@ through web UI, before which connecting to networks will fail.
 Hash containing network names and associated passwords. If required, client
 attachmment request must be approved through web UI before networks may be
 connected.
-
-`hamachi['ipaddress_ham0']`
-The clients internal ip on the network. This is set in the recipe, and
-not tunable.
 
 Usage
 =====
