@@ -37,3 +37,15 @@ connected.
 Usage
 =====
 
+TODO
+====
+
+ * Provide log info warnings whenever approval is pending through the
+   web UI.
+ * Once approved, log into networks.
+ * Allow a "wait for approval" process for networks like for account
+   attachment.
+ * Allow lmi account attachment to be cancelled or changes if new
+   account is specified (currently need to manually disconnect first.
+ * Allow network list to be more idempotent (add and remove networks
+   based on active list)
