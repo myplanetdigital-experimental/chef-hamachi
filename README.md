@@ -9,7 +9,11 @@ Requirements
 ============
 
 While not required, the [network_addr](https://gist.github.com/1040543) Ohai plugin is highly recommended
-to help retrieve the ip address of the hamachi interface
+to help retrieve the ip address of the hamachi interface.
+
+## Cookbooks:
+
+* `apt` recipe
 
 Attributes
 ==========

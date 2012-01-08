@@ -44,6 +44,8 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{installer_filename}" do
   action :create_if_missing
 end
 
+require_recipe "apt"
+
 package "lsb-core"
 
 dpkg_package "hamachi" do
