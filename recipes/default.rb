@@ -22,7 +22,7 @@ installer_filename = "logmein-hamachi_#{node[:hamachi][:version]}-"
 
 case node[:kernel][:machine]
 # 32-bit architecture
-when "i386", "i486"
+when "i386", "i486", "i686"
   case node[:platform]
   when "debian", "ubuntu"
     installer_filename << "1_i386.deb"

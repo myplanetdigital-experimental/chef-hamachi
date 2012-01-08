@@ -3,7 +3,7 @@ Description
 Will eventually provide a resource for managing hamachi networks that a client is
 connected to. Currently only installs Logmein Hamachi2 client from package.
 
-Currently tested only on Ubuntu 8.04.2 (Hardy).
+Currently tested only on 64-bit Ubuntu 8.04.2 (Hardy) and 32-bit Ubuntu 10.04 (Lucid).
 
 Requirements
 ============
