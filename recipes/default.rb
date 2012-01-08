@@ -58,3 +58,27 @@ service "hamachi" do
   supports [ :restart, :reload ]
   action [ :enable, :start ]
 end
+
+bash "hamachi login" do
+  user "root"
+  code "hamachi login & wait $!"
+  only_if { %x[ sudo hamachi | grep "^[ ]*status" | awk '{ print $3 }' ].strip.match /^offline$/ }
+end
+
+bash "hamachi set-nick" do
+  user "root"
+  code "hamachi set-nick #{node['hamachi']['nickname']} & wait $!"
+end
+
+bash "hamachi attach" do
+  user "root"
+  code "sleep 5 && hamachi attach #{node['hamachi']['logmein_account']} & wait $!"
+  # Only attach if no account attached (dash)
+  only_if { %x[ sudo hamachi | grep '^[ ]*lmi account' | awk '{print $3}' ].strip.match /^-$/ }
+end
+
+# If "pending" appears, write to chef log
+log "Awaiting account attachment approval: #{node['hamachi']['logmein_account']}" do
+  level :warn
+  only_if { %x[ sudo hamachi | grep '^[ ]*lmi account' | awk '{print $3 " " $4}'].strip.match /\(pending\)$/ }
+end
