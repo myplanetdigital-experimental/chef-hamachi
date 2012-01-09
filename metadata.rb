@@ -3,5 +3,5 @@ maintainer_email "patrick@myplanetdigital.com"
 license          "GNU Public License 3.0"
 description      "Installs/Configures Logmein Hamachi2"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.0"
+version          "2.0.1"
 depends          "apt"
