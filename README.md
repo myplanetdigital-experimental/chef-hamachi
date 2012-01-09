@@ -30,9 +30,15 @@ account's networks. Depending on account settings, may required authorization
 through web UI, before which connecting to networks will fail.
 
 `hamachi['networks']`
-Hash containing network names and associated passwords. If required, client
-attachmment request must be approved through web UI before networks may be
-connected.
+Hash containing network "id" code and "password" attributes keyed to informal network name.
+Currently, only networks *not* requiring manual approval can be used.
+
+**Example:**
+
+    default['hamachi']['networks']['example'] = {
+      "id": "000-000-000",
+      "password": "secret"
+    }
 
 Usage
 =====

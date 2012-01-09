@@ -85,9 +85,9 @@ end
 
 networks = node['hamachi']['networks']
 
-networks.each do |id, passwd|
-  bash "hamachi join #{id}" do
+networks.each do |name, data|
+  bash "hamachi joining network: #{name}" do
     user "root"
-    code "sleep 1 && hamachi join #{id} '#{passwd}' & wait $!"
+    code "sleep 1 && hamachi join #{data['id']} '#{data['password']}' & wait $!"
   end
 end

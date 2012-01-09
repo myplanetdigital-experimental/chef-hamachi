@@ -21,4 +21,5 @@
 default['hamachi']['version']         = "2.1.0.17"
 default['hamachi']['nickname']        = node['hostname']
 default['hamachi']['logmein_account'] = "account.email@example.com"
-default['hamachi']['networks']        = { "my-network-id" => "password" }
+default['hamachi']['networks']        = nil
+#default['hamachi']['networks']['example'] = { "id" => "000-000-000", "password" => "secret" }
