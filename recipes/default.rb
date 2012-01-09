@@ -72,7 +72,7 @@ end
 
 bash "hamachi attach" do
   user "root"
-  code "sleep 5 && hamachi attach #{node['hamachi']['logmein_account']} & wait $!"
+  code "hamachi attach #{node['hamachi']['logmein_account']} & wait $!"
   # Only attach if no account attached (dash)
   only_if { %x[ sudo hamachi | grep '^[ ]*lmi account' | awk '{print $3}' ].strip.match /^-$/ }
 end
@@ -81,4 +81,13 @@ end
 log "Awaiting account attachment approval: #{node['hamachi']['logmein_account']}" do
   level :warn
   only_if { %x[ sudo hamachi | grep '^[ ]*lmi account' | awk '{print $3 " " $4}'].strip.match /\(pending\)$/ }
+end
+
+networks = node['hamachi']['networks']
+
+networks.each do |id, passwd|
+  bash "hamachi join #{id}" do
+    user "root"
+    code "sleep 1 && hamachi join #{id} '#{passwd}' & wait $!"
+  end
 end

@@ -37,15 +37,18 @@ connected.
 Usage
 =====
 
+ * Unfortunately, this cookbook currently works only with networks that
+   do NOT require manual approval (ie. doesn't use "hamachi do-join")
+
 TODO
 ====
 
- * Provide log info warnings whenever approval is pending through the
-   web UI.
- * Once approved, log into networks.
  * Allow a "wait for approval" process for networks like for account
-   attachment.
+   attachment (ie accommodate both "join" and "do-join" commands)
  * Allow lmi account attachment to be cancelled or changes if new
    account is specified (currently need to manually disconnect first.
  * Allow network list to be more idempotent (add and remove networks
    based on active list)
+ * Find a way to fail/warn when account attachment fails (bad login)
+ * Convert networks from attribute to databag for encryption
+ * Create LWRP?
