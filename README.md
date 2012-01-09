@@ -52,3 +52,10 @@ TODO
  * Find a way to fail/warn when account attachment fails (bad login)
  * Convert networks from attribute to databag for encryption
  * Create LWRP?
+
+Contributing
+============
+
+If you feel like chipping in and have Vagrant installed, feel free to
+clone my vagrant development setup,
+[hamachi-cooking](http://github.com/myplanetdigital/hamachi-cooking).
